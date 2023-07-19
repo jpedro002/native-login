@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5"
 
@@ -7,7 +7,7 @@ export default function App() {
 
   const [SwichEye , setSwichEye] = useState(true)
   const handleCLickEye = () => {
-    setSwichEye(!SwichEye)
+    setSwichEye(SwichEye => !SwichEye)
   } 
 
   return (
@@ -29,15 +29,20 @@ export default function App() {
           className="text-black h-20 w-full rounded-full pl-12 bg-slate-200  placeholder:text-xl  "
           placeholder="useless placeholder"
         />
-        <Icon name={SwichEye ? "eye" : "eye-slash"} size={20} 
-        onClick={handleCLickEye}
-        color="#4F8EF7"
-              style={{
-                margin: 10,
-                position: 'absolute',
-                right: 10
-              }}
-        />
+        <Pressable
+          onPress={handleCLickEye}
+          className="p-10 bg-black absolute"
+        >
+          <Icon name={SwichEye ? "eye" : "eye-slash"} size={20} 
+          color="#4F8EF7"
+                style={{
+                  margin: 10,
+                  position: 'absolute',
+                  right: 10,
+                }}
+          />
+        </Pressable>
+        
 
       </View>
       
